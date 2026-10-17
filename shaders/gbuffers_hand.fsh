@@ -23,14 +23,11 @@ void main() {
     vec3 torchColor = getTorchColor();
     vec3 sunColor = getSunlightColor(1.0);
 
-    // Calculate dynamic shadow
+    // Calculate dynamic shadow (shaders-MakeBreezy style)
     float shadowFactor = 1.0;
     vec3 shadowColorTint = vec3(1.0);
     #ifdef DYNAMIC_SHADOWS
-    vec3 shadowCoord = getShadowCoord(viewPos, gbufferModelViewInverse);
-    float rawShadow = getShadowFactor(shadowCoord);
-    shadowFactor = getCartoonShadow(rawShadow);
-    shadowColorTint = getShadowColor(shadowCoord);
+    calculateShadow(viewPos, normal, lightDir, gl_FragCoord.xy, lmCoord.y, shadowFactor, shadowColorTint);
     #endif
 
     #ifdef CEL_SHADING

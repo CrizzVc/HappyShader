@@ -1,8 +1,7 @@
 #version 120
 
 /*
- * HAPPY SHADERS - Shadow Pass Vertex Shader
- * Renders the scene from the sun/moon's perspective to create the shadow depth map.
+ * HAPPY SHADERS - Shadow Pass Vertex Shader (shaders-MakeBreezy style)
  */
 
 #include "/lib/settings.glsl"
@@ -11,20 +10,22 @@
 attribute vec4 mc_Entity;
 attribute vec4 mc_midTexCoord;
 
-uniform mat4 shadowModelView;
-uniform mat4 shadowModelViewInverse;
-uniform mat4 shadowProjection;
 uniform vec3 cameraPosition;
 uniform float frameTimeCounter;
 
 varying vec2 texCoord;
 varying vec4 color;
 
-// Distortion function to increase shadow detail near the player (shadow map warping)
-vec2 distortShadowCoord(vec2 coord) {
-    float distortFactor = length(coord);
-    float distortion = mix(1.0, distortFactor, SHADOW_DISTORTION);
-    return coord / distortion;
+// MakeBreezy shadow distortion
+const float shadowMapBias = 1.0 - 25.6 / shadowDistance;
+
+float get_distort_factor(vec2 pos) {
+    return length(pos.xy) * shadowMapBias + (1.0 - shadowMapBias);
+}
+
+vec3 distort(vec3 pos) {
+    float factor = get_distort_factor(pos.xy);
+    return vec3(pos.xy / factor, pos.z * 0.2);
 }
 
 void main() {
@@ -32,11 +33,9 @@ void main() {
     color = gl_Color;
 
     vec4 position = gl_Vertex;
+    vec3 worldPos = position.xyz + cameraPosition;
 
-    // Compute world position for waving
-    vec3 worldPos = (shadowModelViewInverse * (shadowModelView * position)).xyz + cameraPosition;
-
-    // Apply waving animations in shadow pass so shadows match the deformed geometry
+    // Apply plant and foliage waving in shadow pass
     int blockId = int(mc_Entity.x + 0.5);
     if (blockId == 10001) {
         float topWeight = clamp((mc_midTexCoord.t - gl_MultiTexCoord0.t) * 16.0, 0.0, 1.0);
@@ -48,9 +47,6 @@ void main() {
         position.xyz += getFoliageOffset(worldPos, 0.7, frameTimeCounter * 0.8);
     }
 
-    // Project into shadow clip space
-    gl_Position = shadowProjection * shadowModelView * position;
-
-    // Apply shadow map distortion for better near-player detail
-    gl_Position.xy = distortShadowCoord(gl_Position.xy);
+    gl_Position = gl_ModelViewProjectionMatrix * position;
+    gl_Position.xyz = distort(gl_Position.xyz);
 }

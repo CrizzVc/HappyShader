@@ -16,5 +16,6 @@ void main() {
     // Discard fully transparent pixels so they don't cast shadows
     if (albedo.a < 0.1) discard;
 
+    /* DRAWBUFFERS:0 */
     gl_FragData[0] = albedo;
 }

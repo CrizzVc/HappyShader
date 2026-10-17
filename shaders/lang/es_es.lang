@@ -47,24 +47,22 @@ option.WATER_TRANSPARENCY.comment=Claridad del agua para ver el fondo submarino.
 
 # Menú Sombras Dinámicas
 screen.SHADOW_MENU=Sombras Dinámicas
-screen.SHADOW_MENU.comment=Sombras proyectadas en tiempo real desde el sol y la luna.
+screen.SHADOW_MENU.comment=Sombras proyectadas en tiempo real desde el sol y la luna (Estilo shaders-MakeBreezy).
 
-# Opciones Sombras
+# Opciones Sombras (Estilo shaders-MakeBreezy)
 option.DYNAMIC_SHADOWS=Sombras Dinámicas
 option.DYNAMIC_SHADOWS.comment=Activa las sombras proyectadas en tiempo real por el sol/luna.
+option.SHADOW_FILTER=Filtro de Sombra
+option.SHADOW_FILTER.comment=Método de filtrado: 0=Ninguno (Nítido/Toon), 1=Desenfoque MakeBreezy (5 muestras), 2=Vogel-Disk PCF (8 muestras con dither).
+value.SHADOW_FILTER.0=Ninguno (Nítido)
+value.SHADOW_FILTER.1=Desenfoque MakeBreezy (5-tap)
+value.SHADOW_FILTER.2=Vogel PCF (8-tap)
+option.SHADOW_BLUR_RADIUS=Radio de Desenfoque
+option.SHADOW_BLUR_RADIUS.comment=Radio de dispersión de la penumbra en sombras suaves.
+option.COLORED_SHADOW=Sombras Coloreadas
+option.COLORED_SHADOW.comment=Tiñe las sombras que atraviesan cristales tintados y agua.
 option.SHADOW_MAP_RESOLUTION=Resolución del Mapa
 option.SHADOW_MAP_RESOLUTION.comment=Resolución del mapa de sombras en píxeles. Valores altos = más detalle y más coste en FPS.
-option.SHADOW_QUALITY=Calidad de Filtro
-option.SHADOW_QUALITY.comment=Tipo de suavizado en los bordes de las sombras. 0=Duro, 1=Suave (4-tap), 2=Ultra (12-tap).
-value.SHADOW_QUALITY.0=Duro
-value.SHADOW_QUALITY.1=Suave (PCF 4x)
-value.SHADOW_QUALITY.2=Ultra (PCF 12x)
-option.SHADOW_DISTANCE=Distancia de Sombras
-option.SHADOW_DISTANCE.comment=Distancia de renderizado de sombras en chunks. Mayor = más lejos pero más costoso.
-option.SHADOW_BIAS=Sesgo de Profundidad
-option.SHADOW_BIAS.comment=Ajuste para evitar artefactos (acné de sombras). Aumentar si se ven líneas extrañas.
-option.SHADOW_DISTORTION=Distorsión del Mapa
-option.SHADOW_DISTORTION.comment=Concentra el detalle de sombras cerca del jugador. Mayor = más detalle cercano.
 option.SHADOW_DARKNESS=Oscuridad de las Sombras
 option.SHADOW_DARKNESS.comment=Qué tan oscuras son las zonas sombreadas. 0=Sombras negras, valores altos=más claras.
 
