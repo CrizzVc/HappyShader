@@ -1,0 +1,56 @@
+# Happy Shaders - English Translation
+
+# Screens
+screen.CEL_SHADING_MENU=Cel-Shading (Toon) Lighting
+screen.CEL_SHADING_MENU.comment=Settings for banded toon lighting and shadows.
+screen.WAVING_MENU=Wind Animations
+screen.WAVING_MENU.comment=Wind sway animations for plants, flowers, and tree leaves.
+screen.WATER_MENU=Stylized Water
+screen.WATER_MENU.comment=Color palette, transparency, and wave highlights for water.
+
+# Cel-Shading Options
+option.CEL_SHADING=Toon Lighting
+option.CEL_SHADING.comment=Enables stylized banded illumination on blocks and entities.
+option.CEL_BANDS=Light Bands
+option.CEL_BANDS.comment=Number of quantized light steps for daylight and shadows.
+option.CEL_SHADOW_BRIGHTNESS=Shadow Brightness
+option.CEL_SHADOW_BRIGHTNESS.comment=Ambient brightness level in shadowed areas.
+option.CEL_TORCH_STEPS=Torch Steps
+option.CEL_TORCH_STEPS.comment=Quantized brightness steps for torches and light blocks.
+option.WARM_LIGHTING=Warm Lighting
+option.WARM_LIGHTING.comment=Cozy golden sunlight and warm torchlight.
+
+# Wind Options
+option.WAVING_FOLIAGE=Waving Foliage
+option.WAVING_FOLIAGE.comment=Gentle wind sway for grass, flowers, and crops.
+option.WAVING_LEAVES=Waving Leaves
+option.WAVING_LEAVES.comment=Gentle rustle effect for tree foliage.
+option.WAVING_SPEED=Wind Speed
+option.WAVING_SPEED.comment=Speed of the wind animation.
+option.WAVING_INTENSITY=Wind Strength
+option.WAVING_INTENSITY.comment=Amplitude of foliage motion.
+
+# Water Options
+option.CARTOON_WATER=Cartoon Water
+option.CARTOON_WATER.comment=Vibrant, stylized water with animated caustics and highlights.
+option.WATER_WAVE_DISPLACEMENT=Water Surface Waves
+option.WATER_WAVE_DISPLACEMENT.comment=Gentle animated geometric waves on the water surface.
+option.WATER_RIPPLES=Water Ripples
+option.WATER_RIPPLES.comment=Stylized cartoon highlights and foam ripple lines.
+option.WATER_STYLE=Color Style
+option.WATER_STYLE.comment=Water color palette: 0=Tropical Turquoise, 1=Sky Blue, 2=Emerald Lagoon.
+value.WATER_STYLE.0=Tropical Turquoise
+value.WATER_STYLE.1=Sky Blue
+value.WATER_STYLE.2=Emerald Lagoon
+option.WATER_TRANSPARENCY=Water Transparency
+option.WATER_TRANSPARENCY.comment=Clarity of water for underwater visibility.
+
+# General Options
+option.CARTOON_VIBRANCE=Color Vibrance
+option.CARTOON_VIBRANCE.comment=Saturation and richness multiplier for world colors.
+option.CARTOON_CONTRAST=Contrast
+option.CARTOON_CONTRAST.comment=Comic-style contrast curve.
+option.STYLIZED_SKY=Stylized Sky
+option.STYLIZED_SKY.comment=Cartoon sky gradients for day, sunset, and night cycles.
+option.STYLIZED_CLOUDS=Cartoon Clouds
+option.STYLIZED_CLOUDS.comment=Fluffy clouds tinted to match time of day.
