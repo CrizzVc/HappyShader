@@ -45,6 +45,29 @@ value.WATER_STYLE.2=Emerald Lagoon
 option.WATER_TRANSPARENCY=Water Transparency
 option.WATER_TRANSPARENCY.comment=Clarity of water for underwater visibility.
 
+# Dynamic Shadows Screen
+screen.SHADOW_MENU=Dynamic Shadows
+screen.SHADOW_MENU.comment=Real-time projected shadows from the sun and moon.
+
+# Shadow Options
+option.DYNAMIC_SHADOWS=Dynamic Shadows
+option.DYNAMIC_SHADOWS.comment=Enables real-time projected shadows from the sun and moon.
+option.SHADOW_MAP_RESOLUTION=Shadow Map Resolution
+option.SHADOW_MAP_RESOLUTION.comment=Resolution of the shadow depth map in pixels. Higher = sharper shadows, more GPU cost.
+option.SHADOW_QUALITY=Filter Quality
+option.SHADOW_QUALITY.comment=Shadow edge filtering. 0=Hard, 1=Soft (4-tap PCF), 2=Ultra (12-tap PCF).
+value.SHADOW_QUALITY.0=Hard
+value.SHADOW_QUALITY.1=Soft (PCF 4x)
+value.SHADOW_QUALITY.2=Ultra (PCF 12x)
+option.SHADOW_DISTANCE=Shadow Distance
+option.SHADOW_DISTANCE.comment=How far away shadows are rendered, in chunks. Higher = farther but more expensive.
+option.SHADOW_BIAS=Depth Bias
+option.SHADOW_BIAS.comment=Offset to prevent shadow acne artifacts. Increase if you see striped lines.
+option.SHADOW_DISTORTION=Map Distortion
+option.SHADOW_DISTORTION.comment=Concentrates shadow detail near the player. Higher = more near detail.
+option.SHADOW_DARKNESS=Shadow Darkness
+option.SHADOW_DARKNESS.comment=How dark shadowed areas are. 0=pitch black, higher=lighter shadows.
+
 # General Options
 option.CARTOON_VIBRANCE=Color Vibrance
 option.CARTOON_VIBRANCE.comment=Saturation and richness multiplier for world colors.

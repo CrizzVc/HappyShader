@@ -7,6 +7,7 @@ varying vec4 color;
 varying vec2 texCoord;
 varying vec2 lmCoord;
 varying vec3 normal;
+varying vec4 viewPos;
 
 void main() {
     texCoord = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;
@@ -14,5 +15,8 @@ void main() {
     color = gl_Color;
     normal = normalize(gl_NormalMatrix * gl_Normal);
 
-    gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+    // Compute view-space position for shadow coordinate calculation
+    viewPos = gl_ModelViewMatrix * gl_Vertex;
+
+    gl_Position = gl_ProjectionMatrix * viewPos;
 }

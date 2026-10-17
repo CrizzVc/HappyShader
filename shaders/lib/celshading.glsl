@@ -31,8 +31,11 @@ float getCartoonDiffuse(vec3 normal, vec3 lightDir) {
     #endif
 }
 
-// Combine ambient, sky light and torch light into stylized cartoon illumination
-vec3 applyCartoonLighting(vec3 albedo, vec2 lightmapCoord, vec3 normal, vec3 lightDir, vec3 torchColor, vec3 skyTint) {
+// Combine ambient, sky light, torch light, and dynamic shadow into stylized cartoon illumination
+// shadowFactor: 1.0 = fully lit, 0.0 = fully in shadow (from shadow map)
+// shadowColorTint: colored shadow from stained glass (vec3(1) if no color)
+vec3 applyCartoonLighting(vec3 albedo, vec2 lightmapCoord, vec3 normal, vec3 lightDir,
+                          vec3 torchColor, vec3 skyTint, float shadowFactor, vec3 shadowColorTint) {
     #ifdef CEL_SHADING
     float skyLight = lightmapCoord.y;
     float blockLight = lightmapCoord.x;
@@ -44,6 +47,12 @@ vec3 applyCartoonLighting(vec3 albedo, vec2 lightmapCoord, vec3 normal, vec3 lig
     float toonDiffuse = getCartoonDiffuse(normal, lightDir);
     float naturalLight = toonSky * mix(0.75, 1.0, toonDiffuse);
 
+    // Apply dynamic shadow: darken natural lighting where shadow map says it's occluded
+    #ifdef DYNAMIC_SHADOWS
+    float shadowDarkness = mix(SHADOW_DARKNESS, 1.0, shadowFactor);
+    naturalLight *= shadowDarkness;
+    #endif
+
     // Quantize torch / block light
     float toonTorch = quantizeLight(blockLight, CEL_TORCH_STEPS, 0.0);
     toonTorch = pow(toonTorch, 1.2); // Smooth falloff for cozy feeling
@@ -53,12 +62,18 @@ vec3 applyCartoonLighting(vec3 albedo, vec2 lightmapCoord, vec3 normal, vec3 lig
     vec3 ambient = mix(shadowColor, skyTint, skyLight);
 
     // Combine natural sunlight/skylight + torchlight + ambient
-    vec3 lightFactor = ambient + naturalLight * skyTint + toonTorch * torchColor * 1.35;
+    vec3 lightFactor = ambient + naturalLight * skyTint * shadowColorTint + toonTorch * torchColor * 1.35;
     
     return albedo * lightFactor;
     #else
     return albedo;
     #endif
+}
+
+// Overload for backward compatibility (no shadow input = fully lit)
+vec3 applyCartoonLighting(vec3 albedo, vec2 lightmapCoord, vec3 normal, vec3 lightDir,
+                          vec3 torchColor, vec3 skyTint) {
+    return applyCartoonLighting(albedo, lightmapCoord, normal, lightDir, torchColor, skyTint, 1.0, vec3(1.0));
 }
 
 #endif // CELSHADING_GLSL

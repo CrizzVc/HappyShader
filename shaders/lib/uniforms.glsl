@@ -27,4 +27,8 @@ uniform float wetness;
 uniform float viewWidth;
 uniform float viewHeight;
 
+// Shadow mapping
+uniform mat4 shadowModelView;
+uniform mat4 shadowProjection;
+
 #endif // UNIFORMS_GLSL

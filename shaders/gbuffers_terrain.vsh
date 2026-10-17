@@ -12,6 +12,7 @@ varying vec2 texCoord;
 varying vec2 lmCoord;
 varying vec3 normal;
 varying vec3 worldPosition;
+varying vec4 viewPos;
 
 void main() {
     texCoord = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;
@@ -40,5 +41,8 @@ void main() {
         position.xyz += offset;
     }
 
-    gl_Position = gl_ModelViewProjectionMatrix * position;
+    // Compute view-space position for shadow coordinate calculation in fragment shader
+    viewPos = gl_ModelViewMatrix * position;
+
+    gl_Position = gl_ProjectionMatrix * viewPos;
 }
